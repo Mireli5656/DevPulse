@@ -28,7 +28,8 @@
 
 
 
-**Live demo:** https://mireli5656.github.io/devpulse/
+**Live demo:**
+https://mireli5656.github.io/DevPulse/
 
 ## Features
 
