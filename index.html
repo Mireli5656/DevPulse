@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="DevPulse tracks trending GitHub repositories and Dev.to articles by language and timeframe.">
+<meta name="theme-color" content="#0f172a">
+<title>DevPulse - Developer Trend Radar</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M2 34h14l8-22 12 40 8-18h18' fill='none' stroke='%2322d3ee' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body class="min-h-screen text-slate-200 antialiased">
+
+<header class="glass-bar sticky top-0 z-30">
+  <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
+    <a href="./" class="flex shrink-0 items-center gap-2" aria-label="DevPulse home">
+      <svg class="pulse" viewBox="0 0 64 24" width="52" height="20" fill="none" aria-hidden="true">
+        <path class="base" d="M1 12h16l4-9 7 18 5-9h30" pathLength="100"/>
+        <path class="run" d="M1 12h16l4-9 7 18 5-9h30" pathLength="100"/>
+      </svg>
+      <span class="brand text-xl font-extrabold tracking-tight">DevPulse</span>
+    </a>
+    <div class="relative ml-auto w-full max-w-xs">
+      <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-500"></i>
+      <label class="sr-only" for="search">Filter visible cards</label>
+      <input id="search" type="search" autocomplete="off" placeholder="Filter by title or description" title="Press / to focus" class="field w-full pl-9 pr-3">
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6">
+  <h1 id="title" class="text-3xl font-extrabold tracking-tight sm:text-4xl">Trending this week</h1>
+  <p id="meta" class="mt-2 min-h-6 text-sm text-slate-400" aria-live="polite"></p>
+
+  <section class="mt-6 flex flex-wrap items-center gap-3" aria-label="Filters">
+    <div class="select-wrap">
+      <label class="sr-only" for="lang">Programming language</label>
+      <select id="lang" class="field pl-3 pr-9"></select>
+    </div>
+    <div id="tf" class="seg" role="group" aria-label="Timeframe">
+      <button type="button" data-tf="weekly" aria-pressed="true">Weekly</button>
+      <button type="button" data-tf="monthly" aria-pressed="false">Monthly</button>
+    </div>
+    <button id="refresh" type="button" class="btn ml-auto" title="Fetch fresh data, skipping the cache">
+      <i class="fa-solid fa-rotate"></i> Refresh
+    </button>
+  </section>
+
+  <nav id="tabs" class="tabs mt-6" role="tablist" aria-label="View">
+    <button role="tab" data-view="all" aria-selected="true">All <span class="count" data-count="all">0</span></button>
+    <button role="tab" data-view="repos" aria-selected="false">GitHub Repos <span class="count" data-count="repos">0</span></button>
+    <button role="tab" data-view="articles" aria-selected="false">Dev.to Articles <span class="count" data-count="articles">0</span></button>
+    <button role="tab" data-view="saved" aria-selected="false">Saved Bookmarks <span class="count" data-count="saved">0</span></button>
+  </nav>
+
+  <div id="notice" class="mt-4 space-y-2"></div>
+  <div id="grid" class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-live="polite"></div>
+</main>
+
+<footer class="pb-10 text-center text-xs text-slate-500">
+  Data from the GitHub REST API and the Dev.to API. Responses are cached in your browser for 15 minutes.
+</footer>
+
+<div id="toast" class="toast" role="status"></div>
+</body>
+</html>
