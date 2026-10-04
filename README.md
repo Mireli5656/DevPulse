@@ -28,21 +28,21 @@
 
 
 
-**Live demo:**
-https://mireli5656.github.io/DevPulse/
+**Live demo:** https://mireli5656.github.io/DevPulse/
 
 ## Features
 
 - **Two sources in one view.** Repositories from the GitHub Search API and top articles from the Dev.to API.
-- **Language filter.** JavaScript, TypeScript, Python, Rust, Go, C++, PHP, and Java.
+- **Language filter.** JavaScript, TypeScript, Python, Rust, Go, C++, PHP, Java, and Kotlin.
 - **Timeframe toggle.** Weekly (7 days) or monthly (30 days).
 - **View tabs.** All, GitHub Repos, Dev.to Articles, and Saved Bookmarks, each with a live count.
 - **Instant filtering.** Search by title, description, or author without another network request.
-- **Bookmarks.** Star any repo or article. Saved items persist in your browser and stay available when you switch language or timeframe.
-- **One-click clone.** Copy a ready-to-run `git clone` command from any repo card.
+- **Bookmarks.** Star any repo or article. Saved items persist in your browser, stay available when you switch language or timeframe, and sync across open browser tabs.
+- **One-click clone.** Copy the HTTPS clone URL of any repo with a single click.
 - **Smart caching.** Responses are cached in LocalStorage for 15 minutes to protect API rate limits.
+- **Resilient loading.** Requests time out after 12 seconds, and if one source fails the other still renders.
 - **Polished UI.** Dark glassmorphism layout, skeleton loading states, empty states, and a responsive grid for mobile, tablet, and desktop.
-- **Keyboard friendly.** Press `/` to focus search and `Esc` to clear it.
+- **Keyboard friendly.** Press `/` to focus search, `Esc` to clear it, and use the left and right arrow keys to move between tabs.
 
 ## Tech stack
 
@@ -119,7 +119,7 @@ Bookmarks are stored under `devpulse_bookmarks` in LocalStorage. Each entry keep
 
 ## Rate limits
 
-The GitHub Search API allows roughly 10 unauthenticated requests per minute per IP. The 15-minute cache keeps normal use well below that. If you hit the limit, DevPulse shows a message and you can try again shortly. The Dev.to API needs no key for these endpoints.
+The GitHub Search API allows roughly 10 unauthenticated requests per minute per IP. The 15-minute cache keeps normal use well below that. If you hit the limit, DevPulse shows when it resets and you can try again shortly. The Dev.to API needs no key for these endpoints.
 
 ## Customization
 
@@ -128,7 +128,7 @@ The GitHub Search API allows roughly 10 unauthenticated requests per minute per 
 ```js
 const LANGS = {
   // ...
-  Kotlin: ['kotlin', 'kotlin'],
+  Swift: ['swift', 'swift'],
 };
 ```
 
